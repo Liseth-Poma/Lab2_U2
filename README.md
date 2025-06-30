@@ -102,7 +102,14 @@ Se integra el componente React que gestiona los usuarios y servicios.
 
 ---
 
-### Paso 7: Validación y Presentación de Resultados
+
+### Paso 7: Integrar con el chat existente
+
+Se modifica `public/js/script.js` para obtener perfiles desde la API y enriquecer el sistema de chat con información de usuarios.
+
+---
+
+### Paso 8: Validación y Presentación de Resultados
 
 1. Iniciar servidor:
 
@@ -149,11 +156,6 @@ src/node index.js
 
 ---
 
-### Paso 8: Integrar con el chat existente
-
-Se modifica `public/js/script.js` para obtener perfiles desde la API y enriquecer el sistema de chat con información de usuarios.
-
----
 
 ## 5. ANÁLISIS DE RESULTADOS
 
