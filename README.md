@@ -1,7 +1,3 @@
-Claro, Liss. A continuación te presento el **informe completo en formato README** con las secciones completas e imágenes insertadas desde Imgur en los lugares correspondientes. He adaptado el contenido para que se lea correctamente en Markdown (`README.md`):
-
----
-
 # Consumo de una API RESTful desde una Aplicación Frontend (React)
 
 **Liseth Carolina Poma Lagos**
