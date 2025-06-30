@@ -1,132 +1,226 @@
-# Chat en Tiempo Real con Sockets
-
-**Nombre completo:** Liseth Carolina Poma Lagos
-
-**Fecha de entrega:** 30 de mayo de 2025
+Claro, Liss. A continuación te presento el **informe completo en formato README** con las secciones completas e imágenes insertadas desde Imgur en los lugares correspondientes. He adaptado el contenido para que se lea correctamente en Markdown (`README.md`):
 
 ---
 
-## Introducción
+# Consumo de una API RESTful desde una Aplicación Frontend (React)
 
-Este proyecto consiste en el desarrollo de una aplicación de chat en tiempo real utilizando tecnologías web modernas. El objetivo principal es crear una plataforma sencilla y eficiente que permita a los usuarios comunicarse de manera instantánea.
-
-El uso de sockets es fundamental en este tipo de aplicaciones, ya que permiten establecer una conexión bidireccional entre cliente y servidor. A diferencia de las solicitudes HTTP tradicionales, los sockets mantienen una conexión persistente, ideal para comunicaciones en tiempo real. Esta conexión continua posibilita el envío y la recepción de mensajes sin necesidad de recargar la página, mejorando así la experiencia del usuario y facilitando una interacción fluida.
+**Liseth Carolina Poma Lagos**
 
 ---
 
-## Actividad 1: Clonación del Repositorio y Estructura Inicial
+## RESUMEN
 
-Para comenzar, se debe clonar el repositorio proporcionado por el docente:
+En esta práctica se implementó el consumo de una API RESTful utilizando React como frontend. Se empleó la API pública de [JSONPlaceholder](https://jsonplaceholder.typicode.com) para simular un sistema de gestión de usuarios, mensajes y comentarios. A lo largo del laboratorio se desarrollaron servicios reutilizables mediante `axios`, componentes interactivos para manejar datos de la API y una interfaz gráfica adaptada a la estructura existente de la aplicación. El proyecto permitió integrar funcionalidades CRUD (Crear, Leer, Actualizar, Eliminar) y validar el consumo y visualización de datos en tiempo real. Se logró una integración eficiente y dinámica con la API, afianzando conocimientos prácticos sobre el desarrollo frontend moderno y su conexión con servicios RESTful.
 
-```bash
-git clone https://github.com/paulosk8/webChat.git
-```
-
-Repositorio original:
-🔗 [https://github.com/paulosk8/webChat/tree/main](https://github.com/paulosk8/webChat/tree/main)
-
-**Ramas disponibles:**
-
-* `main`: Contiene el código inicial del proyecto.
-* `implementacion-chat`: Incluye la versión final como referencia.
-
-A continuación, se crea una nueva rama para el desarrollo individual:
-
-```bash
-git checkout -b mi-implementacion
-```
-
-### Capturas del proceso:
-
-![Clonar Repositorio](https://i.imgur.com/Eoj5vhI.png)
-![Nueva Rama](https://i.imgur.com/b9PkuJN.png)
-
-Luego, se abre el proyecto en un editor de código y se instalan las dependencias:
-
-```bash
-npm install
-```
-
-![Instalar dependencias](https://i.imgur.com/eqyZS4w.png)
-
-Finalmente, se ejecuta el proyecto:
-
-```bash
-npm start
-```
-
-![Inicializar Proyecto](https://i.imgur.com/mhHvyeW.png)
+**Palabras Clave:** API RESTful, React, Axios
 
 ---
 
-## Actividad 2: Mejora del Diseño del Chat
+## 1. INTRODUCCIÓN
 
-Se mejoró el diseño visual de la aplicación utilizando CSS y herramientas como Bootstrap. Las mejoras incluyeron:
-
-* Interfaz visual estilizada (colores, tipografía, espaciado).
-* Animaciones para mensajes entrantes y salientes.
-* Registro de usuario con interfaz mejorada.
-* Simulación de interfaz tipo WhatsApp.
-* Diseño responsivo para pantallas móviles.
-
-### Capturas:
-
-**Interfaz del chat mejorada:**
-![Interfaz Visual](https://i.imgur.com/gM7g8hF.png)
-
-**Registro de usuario:**
-![Interfaz Registro](https://i.imgur.com/gn1VrET.png)
-
-**Diseño responsivo:**
-
-![Responsividad](https://i.imgur.com/eIRwenG.png)
+El objetivo de esta práctica es demostrar la capacidad de integrar una API RESTful dentro de una aplicación frontend utilizando React. Se busca aplicar buenas prácticas en el consumo de datos externos, el manejo de estados y errores, así como en la estructuración de componentes y servicios. Esta experiencia fortalece el aprendizaje práctico del desarrollo de interfaces interactivas conectadas con servicios web, resaltando la importancia de mantener una estructura limpia y organizada en los proyectos reales.
 
 ---
 
-## Actividad 3: Características Adicionales (Opcional)
+## 2. OBJETIVO(S)
 
-Se implementaron funcionalidades adicionales para enriquecer la experiencia del usuario:
+**2.1 Objetivo General:**
+Implementar un frontend funcional con React que consuma una API RESTful simulando operaciones CRUD sobre usuarios, mensajes y comentarios.
 
-### Notificaciones en el navegador
+**2.2 Objetivos Específicos:**
 
-Se incluyó el uso de notificaciones del navegador para alertar al usuario cuando llega un nuevo mensaje. Si el navegador soporta esta funcionalidad y el usuario otorga permiso, se mostrará una notificación con el nombre del remitente y el contenido del mensaje.
+* Aplicar el uso de `axios` para consumir una API.
+* Estructurar componentes y servicios React de forma modular.
+* Validar el funcionamiento de cada endpoint con pruebas interactivas.
+* Integrar visualmente los resultados en la estructura existente del proyecto.
 
-```javascript
-socket.on("message", ({ user, message }) => {
-  // Creación del mensaje visual en el chat
+---
 
-  // Mostrar notificación si está permitido
-  if (Notification.permission === 'granted') {
-    new Notification(`Nuevo mensaje de ${user}`, {
-      body: message,
-      icon: '/img/perfil.jpg'
-    });
-  }
+## 3. MARCO TEÓRICO
+
+Una **API RESTful** (Application Programming Interface) permite a distintas aplicaciones comunicarse entre sí utilizando peticiones HTTP (GET, POST, PUT, DELETE). React, por su parte, es una biblioteca de JavaScript para construir interfaces de usuario, especialmente en aplicaciones de una sola página (SPA).
+
+**Axios** es una librería basada en promesas que facilita las solicitudes HTTP hacia APIs desde el navegador. La arquitectura basada en componentes de React permite una separación clara de lógica y presentación, lo cual mejora la mantenibilidad del código.
+
+---
+
+## 4. DESCRIPCIÓN DEL PROCEDIMIENTO
+
+### Paso 1: Instalar dependencias necesarias
+
+```bash
+npm install axios
+```
+
+![Instalación de axios](https://imgur.com/fLRj4vJ.png)
+
+---
+
+### Paso 2: Crear estructura para React
+
+Se crea la siguiente estructura de carpetas:
+
+```
+public/
+├── js/
+│   ├── react/
+│   │   ├── components/
+│   │   └── services/
+│   ├── register.js
+│   └── script.js
+```
+
+---
+
+### Paso 3: Crear el servicio API
+
+Ruta: `public/js/react/services/apiService.js`
+Se implementan los servicios para usuarios, mensajes y comentarios utilizando `axios`.
+
+---
+
+### Paso 4: Crear componente React para gestionar usuarios
+
+Se crea un componente con funciones CRUD para manipular datos de usuarios desde la API.
+
+---
+
+### Paso 5: Agregar ruta en Express
+
+Ruta en `routes/routes.js`:
+
+```js
+router.get("/api-manager", isLoggedIn, (req, res) => {
+  res.sendFile(views + "/api-manager.html");
 });
 ```
 
-![Notificaciones de mensajes](https://i.imgur.com/Gqy2jVx.png)
+---
 
-### Ingreso de nombre de usuario
+### Paso 6: Crear la página HTML para React
 
-Antes de acceder al chat, se solicita un nombre de usuario, lo cual permite una identificación personalizada dentro de la conversación.
+Archivo: `views/api-manager.html`
 
-![Ingresar Usuario](https://i.imgur.com/ST1EaIM.png)
+Se integra el componente React que gestiona los usuarios y servicios.
 
 ---
 
-## Conclusiones
+### Paso 7: Validación y Presentación de Resultados
 
-Durante el desarrollo de este proyecto se obtuvo un aprendizaje significativo sobre la creación de aplicaciones en tiempo real mediante sockets. Comprender su funcionamiento y aplicación en una arquitectura web permitió establecer una comunicación eficiente entre los usuarios.
+1. Iniciar servidor:
 
-Además, se profundizó en el diseño de interfaces amigables, responsivas e intuitivas, inspiradas en plataformas populares de mensajería. También se exploraron funcionalidades adicionales como notificaciones, las cuales enriquecen la experiencia del usuario.
+```bash
+src/node index.js
+```
 
-Uno de los mayores retos fue lograr un diseño atractivo y funcional. Sin embargo, la integración de herramientas modernas permitió superar estos desafíos y obtener un resultado satisfactorio.
+![Servidor ejecutándose](https://imgur.com/pAvbBSU.png)
+
+2. Ingresar a:
+
+[http://localhost:3000/api-manager](http://localhost:3000/api-manager)
+
+
+![Vista React en navegador](https://imgur.com/cCLTByK.png)
 
 ---
 
-## Referencias
+### Crear nuevo usuario
 
-* Zagniotov, A. (n.d.). stubby4j. [https://stubby4j.com/docs/websockets\_configuration\_howto.html](https://stubby4j.com/docs/websockets_configuration_howto.html)
-* Socket.IO. (n.d.). [https://socket.io/](https://socket.io/)
-* Onix React. (2024, noviembre 18). What are Sockets? And what are Sockets for? - Medium. [https://medium.com/@onix\_react/what-are-sockets-and-what-are-sockets-for-8eef56436b7b](https://medium.com/@onix_react/what-are-sockets-and-what-are-sockets-for-8eef56436b7b)
+
+![Creación de usuario](https://imgur.com/aKmY6nr.png)
+
+---
+
+### Ver usuario creado en la lista
+
+
+![Ver usuario creado](https://imgur.com/yiwUNv9.png)
+
+---
+
+### Ver los detalles del usuario
+
+
+![Detalles de usuario](https://imgur.com/EqUUpQQ.png)
+
+---
+
+### Eliminar usuario
+
+
+![Eliminar usuario](https://imgur.com/m1KT8Nw.png)
+
+---
+
+### Paso 8: Integrar con el chat existente
+
+Se modifica `public/js/script.js` para obtener perfiles desde la API y enriquecer el sistema de chat con información de usuarios.
+
+---
+
+## 5. ANÁLISIS DE RESULTADOS
+
+Durante el desarrollo de la práctica se verificó que la interacción entre React y la API se realiza de forma efectiva. Los datos obtenidos se visualizaron correctamente y se permitió realizar pruebas de creación, edición, lectura y eliminación. La implementación del `interceptor` en `axios` permitió manejar errores de forma global. Además, la integración con la interfaz actual demuestra la versatilidad de los componentes y la escalabilidad del proyecto.
+
+| Funcionalidad      | Resultado esperado | Resultado obtenido |
+| ------------------ | ------------------ | ------------------ |
+| Listar usuarios    | ✔️                 | ✔️                 |
+| Crear usuario      | ✔️                 | ✔️                 |
+| Actualizar usuario | ✔️                 | ✔️                 |
+| Eliminar usuario   | ✔️                 | ✔️                 |
+| Cargar mensajes    | ✔️                 | ✔️                 |
+| Cargar comentarios | ✔️                 | ✔️                 |
+
+---
+
+## Estructura final del proyecto
+
+```
+LAB2_U2
+├── node_modules
+├── src
+│   ├── middlewares
+│   ├── public
+│   │   └── css
+│   │   └── img
+│   └── js
+│       ├── react
+│       │   └── services
+│       │       └── apiService.js
+│       └── components
+│           ├── gestionusuarios.js
+│           ├── register.js
+│           └── script.js
+├── routes
+│   └── index.js
+└── views
+    ├── api-manager.html
+    ├── index.html
+    └── register.html
+```
+
+
+## 6. DISCUSIÓN
+
+El trabajo realizado evidencia la importancia de la modularización del código al momento de consumir servicios REST. React, al ser una herramienta basada en componentes, facilitó la integración visual y lógica de los servicios. El uso de `axios` simplificó las operaciones HTTP y la implementación de pruebas manuales permitió identificar errores y verificar el correcto funcionamiento de las operaciones CRUD. Se destaca la utilidad de trabajar con APIs públicas como `jsonplaceholder` para prácticas académicas y prototipado rápido.
+
+---
+
+## 7. CONCLUSIONES
+
+* Se implementó de forma exitosa el consumo de una API RESTful utilizando React.
+* Se diseñó un servicio completo en `axios` que permitió realizar operaciones CRUD sobre los datos.
+* Se desarrolló una interfaz interactiva que se integró al sistema existente, fortaleciendo las habilidades de integración entre frontend y backend.
+* El uso de una API pública permitió concentrarse en el desarrollo del frontend y la lógica de consumo de datos.
+* La estructura final del proyecto quedó ordenada y lista para escalar a nuevos módulos.
+
+---
+
+## 8. BIBLIOGRAFÍA
+
+* Axios. (2024). *Axios HTTP client documentation*. [https://axios-http.com](https://axios-http.com)
+* JSONPlaceholder. (2024). *Fake Online REST API*. [https://jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com)
+* React Docs. (2024). *React – A JavaScript library for building user interfaces*. [https://reactjs.org](https://reactjs.org)
+
+---
+
