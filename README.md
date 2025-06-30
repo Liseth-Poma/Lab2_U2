@@ -77,7 +77,8 @@ Se implementan los servicios para usuarios, mensajes y comentarios utilizando `a
 
 ### Paso 4: Crear componente React para gestionar usuarios
 
-Se crea un componente con funciones CRUD para manipular datos de usuarios desde la API.
+Archivo: `components/gestionusuarios.js`
+Implementación de lógica y renderizado de usuarios con formularios para crear y editar.
 
 ---
 
